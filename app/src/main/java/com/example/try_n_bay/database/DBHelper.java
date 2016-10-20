@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.try_n_bay.R;
 
@@ -17,6 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public static Cursor getGoods(SQLiteDatabase sqLiteDatabase) {
+        Log.d("TryNBay.DBHelper", "getGoods");
         //db = sqLiteDatabase;
         //Cursor c = db.rawQuery("select books._id, books.iconID, books.Title, Authors.name from books, authors where books.authorID=Authors._id"+strWhere,null);
         Cursor c = sqLiteDatabase.query(DBContract.Goods.TABLE_NAME, new String[]{DBContract.Goods._ID, DBContract.Goods.COLUMN_TITLE, DBContract.Goods.COLUMN_ICON_ID, DBContract.Goods.COLUMN_PRICE}, null, null, null, null, null);
@@ -25,6 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public static Cursor getGoodDetail(SQLiteDatabase sqLiteDatabase, int id) {
+        Log.d("TryNBay.DBHelper", "getGoodDetail");
         Cursor c = sqLiteDatabase.query(DBContract.Goods.TABLE_NAME,
                 new String[]{DBContract.Goods._ID, DBContract.Goods.COLUMN_TITLE, DBContract.Goods.COLUMN_ICON_ID, DBContract.Goods.COLUMN_PRICE, DBContract.Goods.COLUMN_DESCRIPTION},
                 "_id=" + String.valueOf(id), null, null, null, null);
@@ -33,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        Log.d("TryNBay.DBHelper", "onCreate");
         createTables(sqLiteDatabase);
 
         db = sqLiteDatabase;
@@ -41,6 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private void initData() {
+        Log.d("TryNBay.DBHelper", "initData");
         insertGood("Dress 1", R.drawable.test1, "Dress 1", 10.0, "10;12");
         insertGood("Dress 2", R.drawable.test2, "Dress 2", 12.0, "12;15;18");
         insertGood("Dress 3", R.drawable.test3, "Dress 3", 13.0, "10;15");

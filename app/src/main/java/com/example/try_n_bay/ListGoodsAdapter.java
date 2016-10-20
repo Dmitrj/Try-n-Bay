@@ -2,6 +2,7 @@ package com.example.try_n_bay;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,14 @@ public class ListGoodsAdapter extends CursorAdapter {
     private LayoutInflater mInflater;
 
     public ListGoodsAdapter(Context context, Cursor c, boolean autoRequery) {
+
         super(context, c, autoRequery);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
+        Log.d("TryNBay.ListGAdapter", "newView");
         View v = mInflater.inflate(R.layout.goods_list_item, parent, false);
 
         ImageView ivIcon = (ImageView) v.findViewById(R.id.ivImage);

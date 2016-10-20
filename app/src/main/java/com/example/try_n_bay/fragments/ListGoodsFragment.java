@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +17,14 @@ import com.example.try_n_bay.R;
 import com.example.try_n_bay.MainActivity;
 import com.example.try_n_bay.database.DBHelper;
 
-public class ListGoodsFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class ListGoodsFragment extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener {
 
     private ListView lv;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        Log.d("TryNBay.ListGFragment", "onCreateView");
         View view = inflater.inflate(R.layout.fragment_list_goods, container, false);
         lv = (ListView) view.findViewById(R.id.lvList);
 
@@ -36,6 +37,7 @@ public class ListGoodsFragment extends Fragment implements AdapterView.OnItemCli
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d("TryNBay.ListGFragment", "onCreate");
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             //mSelectedCategory = getArguments().getString(ARG_POS);
@@ -44,6 +46,7 @@ public class ListGoodsFragment extends Fragment implements AdapterView.OnItemCli
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("TryNBay.ListGFragment", "onItemClick");
         if (getActivity() instanceof ListFragmentListener)
             ((ListFragmentListener) getActivity()).onClickItem(id);
     }
